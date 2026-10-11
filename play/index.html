@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#05070d" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Drone Sim" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>Drone Sim — Play free on the web</title>
+    <meta name="description" content="Fly Drone Sim free in your browser: FPV, line-of-sight and chase cameras, Betaflight-style rates, gamepad, touch or keyboard." />
+    <link rel="canonical" href="https://dronesim.coworkgamestudio.com/play/" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../icons/icon-180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../icons/icon-192.png" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2212%22 fill=%22none%22 stroke=%22%2322e5ff%22 stroke-width=%224%22/%3E%3C/svg%3E" />
+    <style>html,body{background:#05070d}</style>
+    <script type="module" crossorigin src="../assets/xr-GAwj4jjf.js"></script>
+    <script type="module" crossorigin src="../assets/three.core-CepfYkh1.js"></script>
+    <script type="module" crossorigin src="../assets/seed-code-Bh2oZUZ6.js"></script>
+    <script type="module" crossorigin src="../assets/deadlines-_KOTvk_c.js"></script>
+    <script type="module" crossorigin src="../assets/main-D1smWpVf.js"></script>
+    <link rel="stylesheet" crossorigin href="../assets/main-h2UXehln.css">
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="game" tabindex="0" aria-label="Drone simulator 3D view"></canvas>
+      <div id="ui"></div>
+    </div>
+    <div id="splash" role="status" aria-live="polite">
+      <p class="sp-title" aria-hidden="true">DRONE SIM</p>
+      <p class="sp-sub" aria-hidden="true">FPV Racing · Night Loft</p>
+      <div class="sp-bar" aria-hidden="true"><div class="sp-fill"></div></div>
+      <p class="sp-stage" aria-hidden="true">Loading game</p>
+      <span class="sp-sr">Loading Drone Sim…</span>
+    </div>
+    <script>
+      // Fades the splash once main.ts adds body.is-ready (first rendered frame, or a boot that threw), on a
+      // fatal-error screen, or after 20 s as a last resort.
+      (function () {
+        var b = document.body;
+        var t0 = Date.now();
+        // boot progress (main.ts calls __bootProgress at its stages): the bar eases toward the reported value and
+        // creeps a little past it while a stage runs, never backwards
+        var fill = document.querySelector('#splash .sp-fill');
+        var stage = document.querySelector('#splash .sp-stage');
+        var shown = 0, target = 0.06, cap = 0.4;
+        window.__bootProgress = function (f, text) {
+          if (f > target) target = f;
+          cap = Math.min(0.98, Math.max(cap, f + 0.12));
+          if (text && stage) stage.textContent = text;
+        };
+        (function bar() {
+          if (b.classList.contains('is-ready')) return;
+          if (target < cap) target = Math.min(cap, target + 0.0015);
+          shown += (target - shown) * 0.12;
+          if (fill) fill.style.transform = 'scaleX(' + shown.toFixed(4) + ')';
+          requestAnimationFrame(bar);
+        })();
+        function done() {
+          if (fill) fill.style.transform = 'scaleX(1)';
+          b.classList.add('is-ready');
+          setTimeout(function () {
+            var el = document.getElementById('splash');
+            if (el) el.remove();
+          }, 600);
+        }
+        (function poll() {
+          if (b.classList.contains('is-ready')) return done();
+          if (document.querySelector('#ui.ds-fatal') || Date.now() - t0 > 20000) return done();
+          setTimeout(poll, 50);
+        })();
+      })();
+    </script>
+  </body>
+</html>
