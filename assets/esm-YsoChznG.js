@@ -1,0 +1,2 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./web-YwZHryS3.js","./main-DoVb1idY.js","./xr-GAwj4jjf.js","./three.core-DgfU1NtU.js","./prewarm-B77Fdtk8.js","./textures-CYoU-P5h.js","./seed-code-BEgD9jok.js","./BufferGeometryUtils-BTX6Wpa0.js","./deadlines-DdBTRcuP.js","./main-Bcu0osL2.css"])))=>i.map(i=>d[i]);
+import{cn as e,on as t}from"./main-DoVb1idY.js";var n=e(`Dialog`,{web:()=>t(()=>import(`./web-YwZHryS3.js`).then(e=>new e.DialogWeb),__vite__mapDeps([0,1,2,3,4,5,6,7,8,9]),import.meta.url)});export{n as Dialog};
