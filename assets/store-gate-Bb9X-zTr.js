@@ -1,0 +1,15 @@
+import{sr as e,wn as t}from"./main-DVRPGHX0.js";/* empty css              */var n={quest:`M3 8.5A2.5 2.5 0 0 1 5.5 6h13A2.5 2.5 0 0 1 21 8.5v6a2.5 2.5 0 0 1-2.5 2.5h-3.2l-1.6-2.2a2 2 0 0 0-3.4 0L8.7 17H5.5A2.5 2.5 0 0 1 3 14.5z`,"app-store":`M8 2.5h8A1.5 1.5 0 0 1 17.5 4v16a1.5 1.5 0 0 1-1.5 1.5H8A1.5 1.5 0 0 1 6.5 20V4A1.5 1.5 0 0 1 8 2.5zM10.5 18.5h3`,"google-play":`M6 3.5v17l14-8.5z`},r={"&":`&amp;`,"<":`&lt;`,">":`&gt;`,'"':`&quot;`,"'":`&#39;`},i=e=>e.replace(/[&<>"']/g,e=>r[e]);function a(e){return e!==null&&/^https:\/\//.test(e)?e:null}var o=`./badges/app-store-black-en-us.svg`,s=143.6;function c(e){let t=a(e.url);if(t&&e.id===`app-store`)return`<a class="st-badge st-badge--apple" data-store="app-store" href="${i(t)}" target="_blank" rel="noopener"><img src="${o}" alt="Download on the App Store" width="${s}" height="48"></a>`;let r=`<svg class="st-badge__icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="${n[e.id]}"/></svg>`,c=`<span class="st-badge__text"><span class="st-badge__kicker">${i(t?e.kicker:`Coming soon`)}</span><span class="st-badge__name">${i(e.name)}</span></span>`;return t?`<a class="st-badge st-badge--${e.id}" data-store="${e.id}" href="${i(t)}" target="_blank" rel="noopener">${r}${c}</a>`:`<span class="st-badge st-badge--${e.id} is-soon" data-store="${e.id}">${r}${c}</span>`}function l(n,r=`not-owned`){let i=t(`quest`),a=r===`unverified`,o=e(n.location?.search??``),s=n.createElement(`main`);return s.className=`ds-site ds-store-gate`,s.setAttribute(`aria-labelledby`,`ds-store-gate-title`),s.innerHTML=`
+    <div class="ds-store-gate__card">
+      <p class="ds-store-gate__logo" aria-hidden="true">DRONE SIM</p>
+      ${a?`<h1 class="ds-store-gate__title" id="ds-store-gate-title">Couldn’t confirm your purchase</h1>
+      <p class="ds-store-gate__text">The Meta Horizon Store didn’t answer. Connect to the internet and try again — after one successful check the app also starts offline.</p>
+      <div class="ds-ui ds-store-gate__actions">
+        <button type="button" class="ds-btn rc-cta ds-store-gate__play" data-gate="retry"><span>Try again</span></button>
+        <a class="ds-btn ds-store-gate__play" href="${o}" data-gate="play"><span>Play free on the web</span></a>
+      </div>`:`<h1 class="ds-store-gate__title" id="ds-store-gate-title">Drone Sim VR is available on the Meta&nbsp;Horizon&nbsp;Store</h1>
+      <p class="ds-store-gate__text">This page is the Quest app. Install it from the store to fly in VR, or play the free flat-screen version in your browser.</p>
+      <div class="ds-ui ds-store-gate__actions">
+        <a class="ds-btn rc-cta ds-store-gate__play" href="${o}" data-gate="play"><span>Play free on the web</span></a>
+        ${c(i)}
+      </div>`}
+    </div>`,n.body.append(s),s.querySelector(`[data-gate="retry"]`)?.addEventListener(`click`,()=>n.location.reload()),s.querySelector(a?`[data-gate="retry"]`:`[data-gate="play"]`)?.focus({preventScroll:!0}),s}export{l as showStoreGate};
