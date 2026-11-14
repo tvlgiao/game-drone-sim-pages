@@ -1,0 +1,1 @@
+import{Zn as e}from"./main-oE_N2Zt7.js";var t=class extends e{async alert(e){window.alert(e.message)}async prompt(e){let t=window.prompt(e.message,e.inputText||``);return{value:t===null?``:t,cancelled:t===null}}async confirm(e){return{value:window.confirm(e.message)}}};export{t as DialogWeb};
